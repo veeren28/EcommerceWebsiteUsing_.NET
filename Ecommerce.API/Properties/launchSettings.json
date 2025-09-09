@@ -32,5 +32,8 @@
       "applicationUrl": "http://localhost:51083/",
       "sslPort": 44308
     }
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=VEEREN\\SQLEXPRESS01;Initial Catalog=EcommerceDB;Integrated Security=True;Trust Server Certificate=True"
   }
 }
