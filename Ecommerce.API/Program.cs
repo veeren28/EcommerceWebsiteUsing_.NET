@@ -1,5 +1,6 @@
 using Ecommerce.data;
 using Microsoft.EntityFrameworkCore;
+using Ecommerce.service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +10,26 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen(options => { options.EnableAnnotations(); });
-builder.Services.AddDbContext<AppContextDb>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+builder.Services.AddDbContextPool<EssentialProductsDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+//defining servicess
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+
+builder.Services.AddScoped<ICategoryService,CategoryService>();
+
+
+var conn = builder.Configuration.GetConnectionString("DefaultConnection");
+
+
+
+
 var app = builder.Build();
+
 
 
 

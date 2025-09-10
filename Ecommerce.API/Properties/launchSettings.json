@@ -22,7 +22,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-    }
+    },
+    
   },
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
@@ -33,7 +34,5 @@
       "sslPort": 44308
     }
   },
-  "ConnectionStrings": {
-    "DefaultConnection": "Data Source=VEEREN\\SQLEXPRESS01;Initial Catalog=EcommerceDB;Integrated Security=True;Trust Server Certificate=True"
-  }
+  
 }
