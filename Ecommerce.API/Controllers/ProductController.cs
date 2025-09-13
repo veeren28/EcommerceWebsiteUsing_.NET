@@ -1,4 +1,5 @@
-﻿using Ecommerce.service;
+﻿using Ecommerce.API.View_Model.Create;
+using Ecommerce.service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,12 +28,16 @@ namespace Ecommerce.API.Controllers
             return Ok(await _productService.GetProductsAsync());
         }
         [HttpGet("{id}")]
-    public async Task<ActionResult > GetProductByIdAsync(int id)
-    {
+        public async Task<ActionResult> GetProductByIdAsync(int id)
+        {
             if (id <= 0) { return NotFound(); }
             return Ok(await _productService.GetProductAsync(id));
 
-    }
+        }
+
+
+
+
         //[HttpGet("{id}")]
         //public  ActionResult GetProductById(int id)
         //{
@@ -41,5 +46,28 @@ namespace Ecommerce.API.Controllers
         //}
 
 
+        [HttpPost("{id}")]
+        public  async Task<ActionResult> CreateProductAsync([FromBody] CreateProduct NewProduct)
+        {
+
+            var product = new core.ProductModel
+            {
+                Id = NewProduct.Id,
+                Name = NewProduct.Name,
+                CategoryId = NewProduct.CategoryId,
+                IsActive = NewProduct.IsActive,
+                AvailableSince = NewProduct.AvailableSince,
+
+                Description = NewProduct.Descriptions,
+                Price = NewProduct.Price,
+
+
+
+            };
+
+            await _productService.CreateProductAsync(product);
+            return Ok(product);
+
+        }
     }
 }
